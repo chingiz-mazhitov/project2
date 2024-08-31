@@ -1,44 +1,52 @@
-package sample;
+package sample.complete;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Random;
 
 public class Ticket {
 
-	private static final int DEFAULT_ID = 1;
+	private static int DEFAULT_ID = 0;
+	private static final double DEFAULT_BAGGAGE_LIMIT = 10.200;
+	private static final long DEFAULT_TIME = System.currentTimeMillis() / 1000;
+	private static final int DISCOUNT = 2;
+
 	private int id;
-	private int defaultID = 0;
 	private String concertHall;
 	private int code;
 	private long time; //System.currentTimeMillis() / 1000;
 	private boolean isPromo;
 	private char sector;
 	private double baggageLimit;
-	private char[] charArray = "ABCDEFGHIJ".toCharArray();
-	private Random random = new Random();
-	private int index;
+	public BigDecimal price = BigDecimal.valueOf(20.50);
+
+
+	public Ticket() {
+		this(++DEFAULT_ID, "Hall", 0,DEFAULT_TIME,
+				true, 'A', DEFAULT_BAGGAGE_LIMIT);
+	}
 
 	public Ticket(int id, String concertHall, int code, long time, boolean isPromo, char sector, double baggageLimit) {
-		this.id = (id >= 0 && id <= 9999) ? id : 0;
+
+		this.id = (id >= 0 && id <= 9999) ? id : ++DEFAULT_ID;
 		this.baggageLimit = baggageLimit;
 		this.code = (code >= 0 && code <= 999) ? code : 0;
-//		String checkCode = String.format("%03d", this.code);
-//		System.out.println(checkCode);
-		this.concertHall = concertHall.substring(0, 10);
+
+		if (concertHall.length() < 10) {
+			this.concertHall = concertHall;
+		} else {
+			this.concertHall = concertHall.substring(0, 10);
+		}
+
 		this.isPromo = isPromo;
 		this.sector = sector;
 		this.time = time;
+		this.price = isPromo ? (price.subtract(BigDecimal.valueOf(DISCOUNT))) : price;
+
 	}
 
 	public Ticket(String concertHall, int code, long time) {
-		this(DEFAULT_ID, concertHall, code, time, true, 'A', 10.00);
-//		this.concertHall = concertHall;
-//		this.code = code;
-//		this.time = time;
-//		this.id = 1;
-//		this.isPromo = new Random().nextBoolean();
-//		this.index = random.nextInt(0, charArray.length);
-//		this.sector = charArray[index];
+		this(++DEFAULT_ID, concertHall, code, time, true, 'A', DEFAULT_BAGGAGE_LIMIT);
 	}
 
 	@Override
@@ -47,14 +55,11 @@ public class Ticket {
 				"baggageLimit=" + baggageLimit +
 				", id=" + id +
 				", concertHall='" + concertHall + '\'' +
-				", code=" + code +
 				", event code=" + String.format("%03d", code) +
 				", time=" + time +
 				", isPromo=" + isPromo +
 				", sector=" + sector +
-				", charArray=" + Arrays.toString(charArray) +
-				", random=" + random +
-				", index=" + index +
+				", price=" + price +
 				'}';
 	}
 }
