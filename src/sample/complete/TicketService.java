@@ -2,17 +2,17 @@ package sample.complete;
 
 import java.time.Instant;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;
 
 public class TicketService {
 
+	private static Map<Integer, Ticket> tickets;
 
 	public static void main(String[] args) {
 
-		Map<Integer, Ticket> tickets = new HashMap<>();
+		tickets = new HashMap<>();
 
 		// generate 10 tickets
 		IntStream.rangeClosed(1, 10)
@@ -28,9 +28,10 @@ public class TicketService {
 					}
 				});
 
-		for (var value: tickets.values()) {
-			System.out.println(value);
-		}
+//		for (var value: tickets.values()) {
+//			System.out.println(value);
+//		}
+
 
 	}
 

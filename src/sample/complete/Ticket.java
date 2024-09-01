@@ -49,6 +49,10 @@ public class Ticket {
 		this(++DEFAULT_ID, concertHall, code, time, true, 'A', DEFAULT_BAGGAGE_LIMIT);
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	@Override
 	public String toString() {
 		return "Ticket{" +
