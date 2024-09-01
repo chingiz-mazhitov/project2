@@ -32,8 +32,13 @@ public class TicketService {
 //			System.out.println(value);
 //		}
 
+		var ticket = getTicketById(1);
+		System.out.println(ticket);
 
 	}
 
+	public static Ticket getTicketById(int id) {
+		return tickets.get(id);
+	}
 
 }
