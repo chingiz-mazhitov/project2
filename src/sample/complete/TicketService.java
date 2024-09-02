@@ -16,9 +16,9 @@ public class TicketService {
 
 		// generate 10 tickets
 		IntStream.rangeClosed(1, 10)
-				.forEach(i -> {
+				.forEach(ticket -> {
 					long unixTimestamp = System.currentTimeMillis() / 1000;
-					tickets.put(i, new Ticket("Event-" + i, i, unixTimestamp));
+					tickets.put(ticket, new Ticket("Event-" + ticket, ticket, unixTimestamp));
 
 					try {
 						// Sleep for 500 ms
@@ -37,7 +37,7 @@ public class TicketService {
 
 	}
 
-	public static Ticket getTicketById(int id) {
+	private static Ticket getTicketById(int id) {
 		return tickets.get(id);
 	}
 
