@@ -28,10 +28,6 @@ public class TicketService {
 					}
 				});
 
-//		for (var value: tickets.values()) {
-//			System.out.println(value);
-//		}
-
 		var ticket = getTicketById(1);
 		System.out.println(ticket);
 
