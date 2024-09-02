@@ -52,7 +52,7 @@ public class Ticket {
 	public int getId() {
 		return id;
 	}
-// need for getTicketsByStadiumSector function
+
 	public char getSector() {
 		return sector;
 	}

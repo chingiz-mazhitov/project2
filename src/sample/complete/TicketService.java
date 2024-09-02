@@ -1,6 +1,8 @@
 package sample.complete;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,37 +32,37 @@ public class TicketService {
         var ticket = getTicketById(1);
         System.out.println(ticket);
 //testing getTicketsByStadiumSector function
-        Map<Integer, Ticket> ticketByStadiumSector = getTicketsByStadiumSector('A');
-        toStringMap(ticketByStadiumSector);
+        List<Ticket> ticketsByStadiumSector = getTicketsByStadiumSector('A');
+        printTickets(ticketsByStadiumSector);
     }
     private static Ticket getTicketById(int id) {
         return tickets.get(id);
     }
-
     /**
      * This function iterates over all tickets stored in the tickets map and returns
-     * a new map containing only those tickets that belong to the specified sector.
+     * a new List containing only those tickets that belong to the specified sector.
      */
-    private static Map<Integer, Ticket> getTicketsByStadiumSector(char sector) {
-        Map<Integer, Ticket> result = new HashMap<>();
+    private static List<Ticket> getTicketsByStadiumSector(char sector) {
+        List<Ticket> result = new ArrayList<>();
         if (tickets == null) {
             return result;
         }
         return tickets.entrySet().stream()
                 .filter(entry -> entry.getValue().getSector() == sector)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
     }
     /**
-     * Prints the contents of a map (Map) to the console.
+     * Prints the contents of a list of tickets to the console.
      */
-    private static <K, V> void toStringMap(Map<K, V> map) {
-        if (map == null || map.isEmpty()) {
-            System.out.println("The map is empty or null.");
+    private static void printTickets(List<Ticket> tickets) {
+        if (tickets == null || tickets.isEmpty()) {
+            System.out.println("The list is empty or null.");
             return;
         }
-        for (Map.Entry<K, V> entry : map.entrySet()) {
-            System.out.println("ID: " + entry.getKey());
-            System.out.println("Ticket: " + entry.getValue());
+        System.out.println("List:");
+        for (Ticket ticket : tickets) {
+            System.out.println(ticket);
         }
     }
 }
