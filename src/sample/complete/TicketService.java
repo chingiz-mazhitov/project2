@@ -1,29 +1,40 @@
 package sample.complete;
 
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class TicketService {
+
+	private static Map<Integer, Ticket> tickets;
+
 	public static void main(String[] args) {
 
-		long unixTimestamp = Instant.now().getEpochSecond();
-		System.out.println("-".repeat(80));
+		tickets = new HashMap<>();
 
-		// empty
-		Ticket ticketEmpty = new Ticket();
-		System.out.println(ticketEmpty);
-		System.out.println("-".repeat(80));
+		// generate 10 tickets
+		IntStream.rangeClosed(1, 10)
+				.forEach(ticket -> {
+					long unixTimestamp = System.currentTimeMillis() / 1000;
+					tickets.put(ticket, new Ticket("Event-" + ticket, ticket, unixTimestamp));
 
-		// full
-		Ticket ticket = new Ticket(1000, "City Center",
-				1, unixTimestamp, false, 'A', 10.200);
+					try {
+						// Sleep for 500 ms
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
+				});
+
+		var ticket = getTicketById(1);
 		System.out.println(ticket);
-		System.out.println("-".repeat(80));
-
-		// limited
-		Ticket ticket1 = new Ticket("Couchella", 123, unixTimestamp);
-		System.out.println(ticket1);
-
 
 	}
+
+	private static Ticket getTicketById(int id) {
+		return tickets.get(id);
+	}
+
 }
