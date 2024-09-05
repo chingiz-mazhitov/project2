@@ -1,6 +1,6 @@
-package sample.complete.users;
+package com.andersen.users;
 
-import sample.complete.Ticket;
+import com.andersen.Ticket;
 
 public abstract class User {
 

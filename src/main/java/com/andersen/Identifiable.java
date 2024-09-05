@@ -1,4 +1,4 @@
-package sample.complete;
+package com.andersen;
 
 public interface Identifiable {
 

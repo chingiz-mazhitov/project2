@@ -1,7 +1,7 @@
-package sample.complete.users;
+package com.andersen.users;
 
-import sample.complete.Identifiable;
-import sample.complete.Ticket;
+import com.andersen.Identifiable;
+import com.andersen.Ticket;
 
 public class Client extends User implements Identifiable {
 

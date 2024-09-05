@@ -1,8 +1,8 @@
-package sample.complete;
+package com.andersen;
 
-import sample.complete.users.Admin;
-import sample.complete.users.Client;
-import sample.complete.users.User;
+import com.andersen.users.Admin;
+import com.andersen.users.Client;
+import com.andersen.users.User;
 
 import java.util.*;
 
@@ -41,11 +41,14 @@ public class TicketService {
         ticket2.share(phone);
         ticket2.share(phone, email);
 
+        // demonstrate dynamic polymorphism for Client and Admin subclasses
         User client = new Client();
         client.printRole();
 
         User admin = new Admin();
         admin.printRole();
+
+        Ticket ticket = new Ticket();
 
     }
     private static Ticket getTicketById(int id) {

@@ -1,4 +1,4 @@
-package sample.complete;
+package com.andersen;
 
 import java.math.BigDecimal;
 
@@ -6,7 +6,9 @@ public class Ticket implements Identifiable{
 
 	private static final int DISCOUNT = 2;
 
+	@NullableWarning
 	private int id;
+	@NullableWarning
 	private String concertHall;
 	private int eventCode;
 	private long timeStamp;
@@ -16,7 +18,7 @@ public class Ticket implements Identifiable{
 	private BigDecimal price = BigDecimal.valueOf(20.50);
 
 	public Ticket() {
-
+		CheckNullFields.checkNullFields(this);
 	}
 
 	public Ticket(String concertHall, int eventCode, long timeStamp) {
