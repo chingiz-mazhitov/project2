@@ -2,9 +2,8 @@ package sample.complete;
 
 import java.math.BigDecimal;
 
-public class Ticket {
+public class Ticket implements Identifiable{
 
-	private static int DEFAULT_ID = 1;
 	private static final int DISCOUNT = 2;
 
 	private int id;
@@ -41,12 +40,63 @@ public class Ticket {
 		this.price = isPromo ? (price.subtract(BigDecimal.valueOf(DISCOUNT))) : price;
 	}
 
+	@Override
 	public int getId() {
 		return this.id;
 	}
 
+	@Override
+	public void setId(int id) {
+
+	}
+
 	public char getSector() {
 		return this.sector;
+	}
+
+	public void setSector(char sector) {
+		this.sector = sector;
+	}
+
+	public String getConcertHall() {
+		return concertHall;
+	}
+
+	public int getEventCode() {
+		return eventCode;
+	}
+
+	public long getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(long timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public boolean isPromo() {
+		return isPromo;
+	}
+
+	public double getBaggageLimit() {
+		return baggageLimit;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	@Override
+	public void print() {
+		System.out.printf("""
+				Id: %d
+				Concert Hall: %s
+				Event Code: %d
+				Time: %d
+				isPromo: %b
+				Sector: %c
+				Baggage Limit: %f
+				Price: %f""", id, concertHall, eventCode, timeStamp, isPromo, sector, baggageLimit, price);
 	}
 
 	@Override

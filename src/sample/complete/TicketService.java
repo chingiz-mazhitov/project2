@@ -27,6 +27,7 @@ public class TicketService {
         // testing getTicketsBySector function
         List<Ticket> ticketsByStadiumSector = getTicketsBySector('A');
         printTickets(ticketsByStadiumSector);
+
     }
     private static Ticket getTicketById(int id) {
         for (Ticket ticket : tickets) {
