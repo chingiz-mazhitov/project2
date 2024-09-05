@@ -86,9 +86,21 @@ public class Ticket implements Identifiable{
 		return price;
 	}
 
+	// define overloaded share() methods since static polymorphism is chosen
+	public void share(String phoneNumber) {
+		System.out.println("Sharing ticket via phone");
+		System.out.println("Sharing ticket via email to " + phoneNumber + " " + this);
+	}
+
+	public void share(String phoneNumber, String email) {
+		System.out.println("Sharing ticket via phone and email");
+		System.out.printf("phone: %s, email: %s ticket details: %s\n", phoneNumber, email, this);
+	}
+
 	@Override
 	public void print() {
 		System.out.printf("""
+				Ticket details
 				Id: %d
 				Concert Hall: %s
 				Event Code: %d
@@ -97,6 +109,22 @@ public class Ticket implements Identifiable{
 				Sector: %c
 				Baggage Limit: %f
 				Price: %f""", id, concertHall, eventCode, timeStamp, isPromo, sector, baggageLimit, price);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Ticket ticket = (Ticket) o;
+		return id == ticket.id && timeStamp == ticket.timeStamp;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id;
+		result = 31 * result + Long.hashCode(timeStamp);
+		return result;
 	}
 
 	@Override

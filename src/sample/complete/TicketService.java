@@ -1,5 +1,9 @@
 package sample.complete;
 
+import sample.complete.users.Admin;
+import sample.complete.users.Client;
+import sample.complete.users.User;
+
 import java.util.*;
 
 public class TicketService {
@@ -27,6 +31,21 @@ public class TicketService {
         // testing getTicketsBySector function
         List<Ticket> ticketsByStadiumSector = getTicketsBySector('A');
         printTickets(ticketsByStadiumSector);
+        System.out.println("-".repeat(80));
+
+        // demonstrate static polymorphism for share() method
+        String phone = "15705143163";
+        String email = "chingiz.mazhitov56@gmail.com";
+        Ticket ticket2 = getTicketById(2);
+
+        ticket2.share(phone);
+        ticket2.share(phone, email);
+
+        User client = new Client();
+        client.printRole();
+
+        User admin = new Admin();
+        admin.printRole();
 
     }
     private static Ticket getTicketById(int id) {
