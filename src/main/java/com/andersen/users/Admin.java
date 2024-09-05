@@ -1,20 +1,21 @@
 package com.andersen.users;
 
-import com.andersen.Identifiable;
 import com.andersen.Ticket;
 
-public class Admin extends User implements Identifiable {
+public class Admin extends User {
 
-	private int id;
+	public Admin(Ticket ticket) {
+		super(ticket);
+	}
 
 	@Override
 	public int getId() {
-		return this.id;
+		return super.id;
 	}
 
 	@Override
 	public void setId(int id) {
-		this.id = id;
+		super.id = id;
 	}
 
 	@Override

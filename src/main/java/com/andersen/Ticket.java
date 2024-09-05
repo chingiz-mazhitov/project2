@@ -2,16 +2,13 @@ package com.andersen;
 
 import java.math.BigDecimal;
 
-public class Ticket implements Identifiable{
+public class Ticket extends Identify {
 
 	private static final int DISCOUNT = 2;
-
-	private int id;
 
 	@NullableWarning
 	private String concertHall;
 
-	@NullableWarning
 	private int eventCode;
 
 	private long timeStamp;
@@ -34,10 +31,12 @@ public class Ticket implements Identifiable{
 		this.concertHall = concertHall;
 		this.eventCode = eventCode;
 		this.timeStamp = timeStamp;
+
+		CheckNullFields.checkNullFields(this);
 	}
 
 	public Ticket(int id, String concertHall, int eventCode, long timeStamp, boolean isPromo, char sector, double baggageLimit) {
-		this.id = (id > 0 && id <= 9999) ? id : ++id;
+		super.id = (id > 0 && id <= 9999) ? id : ++id;
 		if (concertHall.length() < 10) {
 			this.concertHall = concertHall;
 		} else {
@@ -49,16 +48,18 @@ public class Ticket implements Identifiable{
 		this.sector = sector;
 		this.baggageLimit = baggageLimit;
 		this.price = isPromo ? (price.subtract(BigDecimal.valueOf(DISCOUNT))) : price;
+
+		CheckNullFields.checkNullFields(this);
 	}
 
 	@Override
 	public int getId() {
-		return this.id;
+		return super.id;
 	}
 
 	@Override
 	public void setId(int id) {
-
+		super.id = id;
 	}
 
 	public char getSector() {
@@ -70,15 +71,11 @@ public class Ticket implements Identifiable{
 	}
 
 	public String getConcertHall() {
-		return concertHall;
+		return this.concertHall;
 	}
 
 	public int getEventCode() {
-		return eventCode;
-	}
-
-	public long getTimeStamp() {
-		return timeStamp;
+		return this.eventCode;
 	}
 
 	public void setTimeStamp(long timeStamp) {
@@ -86,21 +83,21 @@ public class Ticket implements Identifiable{
 	}
 
 	public boolean isPromo() {
-		return isPromo;
+		return this.isPromo;
 	}
 
 	public double getBaggageLimit() {
-		return baggageLimit;
+		return this.baggageLimit;
 	}
 
 	public BigDecimal getPrice() {
-		return price;
+		return this.price;
 	}
 
 	// define overloaded share() methods since static polymorphism is chosen
 	public void share(String phoneNumber) {
 		System.out.println("Sharing ticket via phone");
-		System.out.println("Sharing ticket via email to " + phoneNumber + " " + this);
+		System.out.printf("phone: %s, ticket details: %s\n" + phoneNumber, this);
 	}
 
 	public void share(String phoneNumber, String email) {

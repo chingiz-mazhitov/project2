@@ -42,10 +42,10 @@ public class TicketService {
         ticket2.share(phone, email);
 
         // demonstrate dynamic polymorphism for Client and Admin subclasses
-        User client = new Client();
+        User client = new Client(ticket2);
         client.printRole();
 
-        User admin = new Admin();
+        User admin = new Admin(ticket2);
         admin.printRole();
 
         // check for nulls
