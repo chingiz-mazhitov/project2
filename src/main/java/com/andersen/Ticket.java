@@ -6,15 +6,24 @@ public class Ticket implements Identifiable{
 
 	private static final int DISCOUNT = 2;
 
-	@NullableWarning
 	private int id;
+
 	@NullableWarning
 	private String concertHall;
+
+	@NullableWarning
 	private int eventCode;
+
 	private long timeStamp;
+
 	private boolean isPromo;
+
+	@NullableWarning
 	private char sector;
+
 	private double baggageLimit;
+
+	@NullableWarning
 	private BigDecimal price = BigDecimal.valueOf(20.50);
 
 	public Ticket() {
