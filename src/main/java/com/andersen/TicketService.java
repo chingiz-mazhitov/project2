@@ -48,6 +48,7 @@ public class TicketService {
         User admin = new Admin();
         admin.printRole();
 
+        // check for nulls
         Ticket ticket = new Ticket();
 
     }
