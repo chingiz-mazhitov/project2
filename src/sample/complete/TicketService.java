@@ -1,56 +1,58 @@
 package sample.complete;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.*;
 
 public class TicketService {
 
-    private static Map<Integer, Ticket> tickets;
+    private static List<Ticket> tickets;
 
     public static void main(String[] args) {
 
-        tickets = new HashMap<>();
+        System.out.println("-".repeat(80));
+        tickets = new ArrayList<>();
 
-        // generate 10 tickets
-        IntStream.rangeClosed(1, 10)
-                .forEach(ticket -> {
-                    long unixTimestamp = System.currentTimeMillis() / 1000;
-                    tickets.put(ticket, new Ticket("Event-" + ticket, ticket, unixTimestamp));
+        List<Character> sectorList = new ArrayList<>();
+        sectorList.addAll(List.of('A', 'B', 'C'));
+        Collections.shuffle(sectorList);
 
-                    try {
-                        // Sleep for 500 ms
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
-                });
+        Random random = new Random();
+        for (int i = 1; i <= 10; i++) {
+            long timeStamp = System.currentTimeMillis();
+            boolean isPromo = random.nextBoolean();
+            int ticketId = i;
+            Character sector = sectorList.get(ticketId % sectorList.size());
+            tickets.add(new Ticket(ticketId, "Hall", 101, timeStamp, isPromo, sector, 10.5));
+        }
 
-        var ticket = getTicketById(1);
-        System.out.println(ticket);
-//testing getTicketsByStadiumSector function
-        List<Ticket> ticketsByStadiumSector = getTicketsByStadiumSector('A');
+        // testing getTicketsBySector function
+        List<Ticket> ticketsByStadiumSector = getTicketsBySector('A');
         printTickets(ticketsByStadiumSector);
     }
     private static Ticket getTicketById(int id) {
-        return tickets.get(id);
+        for (Ticket ticket : tickets) {
+            if (ticket.getId() == id) {
+                System.out.println("Ticket with #id " + id + " is found!");
+                return ticket;
+            }
+        }
+        System.out.println("Ticket is not found!");
+        return null;
     }
     /**
      * This function iterates over all tickets stored in the tickets map and returns
      * a new List containing only those tickets that belong to the specified sector.
      */
-    private static List<Ticket> getTicketsByStadiumSector(char sector) {
+    private static List<Ticket> getTicketsBySector(char sector) {
         List<Ticket> result = new ArrayList<>();
         if (tickets == null) {
             return result;
         }
-        return tickets.entrySet().stream()
-                .filter(entry -> entry.getValue().getSector() == sector)
-                .map(Map.Entry::getValue)
-                .collect(Collectors.toList());
+        for (Ticket ticket : tickets) {
+            if (ticket.getSector() == sector) {
+                result.add(ticket);
+            }
+        }
+        return result;
     }
     /**
      * Prints the contents of a list of tickets to the console.
