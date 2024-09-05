@@ -15,7 +15,7 @@ public class CheckNullFields {
 					Object value = field.get(obj);
 					if (value == null) {
 						System.out.println("Field '" + field.getName() + "' in class '"
-						+ clazz.getSimpleName() + "' is null");
+								+ clazz.getSimpleName() + "' is null");
 					}
 				} catch (IllegalAccessException e) {
 					throw new RuntimeException(e);

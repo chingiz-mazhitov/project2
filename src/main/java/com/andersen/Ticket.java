@@ -28,14 +28,16 @@ public class Ticket extends Identify {
 	}
 
 	public Ticket(String concertHall, int eventCode, long timeStamp) {
+
+		CheckNullFields.checkNullFields(this);
 		this.concertHall = concertHall;
 		this.eventCode = eventCode;
 		this.timeStamp = timeStamp;
-
-		CheckNullFields.checkNullFields(this);
 	}
 
 	public Ticket(int id, String concertHall, int eventCode, long timeStamp, boolean isPromo, char sector, double baggageLimit) {
+
+		CheckNullFields.checkNullFields(this);
 		super.id = (id > 0 && id <= 9999) ? id : ++id;
 		if (concertHall.length() < 10) {
 			this.concertHall = concertHall;
@@ -48,18 +50,6 @@ public class Ticket extends Identify {
 		this.sector = sector;
 		this.baggageLimit = baggageLimit;
 		this.price = isPromo ? (price.subtract(BigDecimal.valueOf(DISCOUNT))) : price;
-
-		CheckNullFields.checkNullFields(this);
-	}
-
-	@Override
-	public int getId() {
-		return super.id;
-	}
-
-	@Override
-	public void setId(int id) {
-		super.id = id;
 	}
 
 	public char getSector() {

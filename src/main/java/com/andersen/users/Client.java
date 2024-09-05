@@ -9,16 +9,6 @@ public class Client extends User {
 	}
 
 	@Override
-	public int getId() {
-		return super.id;
-	}
-
-	@Override
-	public void setId(int id) {
-		super.id = id;
-	}
-
-	@Override
 	public void printRole() {
 		System.out.println("Role: " + this.getClass().getSimpleName());
 	}
