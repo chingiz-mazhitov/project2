@@ -13,6 +13,9 @@ public class BusTicket {
 
 	private BigDecimal price;
 
+	public BusTicket() {
+	}
+
 	public BusTicket(TicketClass ticketClass, TicketType ticketType, LocalDate startDate, BigDecimal price) {
 
 		this.ticketClass = ticketClass;
@@ -45,11 +48,5 @@ public class BusTicket {
 				", dt=" + startDate +
 				", price=" + price +
 				'}';
-	}
-
-	enum TicketClass {
-		CLA,
-		STD,
-		PRIME
 	}
 }

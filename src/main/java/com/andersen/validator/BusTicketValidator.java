@@ -6,20 +6,21 @@ import com.andersen.bus.TicketType;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BusTicketValidator implements CustomConstraintValidator<BusTicket> {
 
 	@Override
-	public void isValid(List<BusTicket> list) {
+	public List<BusTicket> isValid(List<BusTicket> list) {
 
+		List<BusTicket> validatedList = new ArrayList<>();
 		int total = list.size();
-		int validTickets = 0;
 
 		int ticketTypeViolation = 0;
 		int startDateViolation = 0;
-		int priceViolation= 0;
-
+		int priceViolation = 0;
+		String violationName;
 		for (BusTicket busTicket : list) {
 
 			// retrieve values
@@ -34,17 +35,23 @@ public class BusTicketValidator implements CustomConstraintValidator<BusTicket> 
 			} else if (!startDateValidate(startDate, ticketType)) {
 				System.err.println("Invalid start date: " + startDate);
 				startDateViolation++;
-			} else if(!priceValidate(price)) {
+			} else if (!priceValidate(price)) {
 				System.err.println("Invalid price: " + price);
 				priceViolation++;
+			} else {
+				validatedList.add(busTicket);
 			}
 		}
 
 		int commonViolation = Math.max(ticketTypeViolation, Math.max(startDateViolation, priceViolation));
 		System.out.println("Total = " + total);
-		System.out.println("Valid tickets = " + validTickets);
-		System.out.println("Popular violations = " + commonViolation);
+		System.out.println("Valid tickets = " + validatedList.size());
 
+		violationName = (commonViolation == ticketTypeViolation) ? "ticketTypeViolation" :
+						(commonViolation == startDateViolation) ? "startDateViolation" : "priceViolation";
+		System.out.println("Popular violations = " + violationName);
+
+		return validatedList;
 	}
 
 	@Override
@@ -56,17 +63,18 @@ public class BusTicketValidator implements CustomConstraintValidator<BusTicket> 
 		int currentYear = now.getYear();
 
 		// start date validation happens here
-		switch (ticketType) {
-			case DAY ->
-				result = dt.getDayOfYear() <= currentDayOfYear;
+		if (dt == null || dt.isAfter(now)) {
+			result = false;
+		} else {
+			switch (ticketType) {
+				case DAY -> result = dt.getDayOfYear() <= currentDayOfYear;
 
-			case WEEK ->
-				result = dt.get(ChronoField.ALIGNED_WEEK_OF_YEAR) <= currentWeekOfYear;
+				case WEEK -> result = dt.get(ChronoField.ALIGNED_WEEK_OF_YEAR) <= currentWeekOfYear;
 
-			case YEAR ->
-				result = dt.getYear() <= currentYear;
+				case YEAR -> result = dt.getYear() <= currentYear;
 
-			default -> result = false;
+				default -> result = false;
+			}
 		}
 
 		return result;
@@ -89,7 +97,7 @@ public class BusTicketValidator implements CustomConstraintValidator<BusTicket> 
 
 	@Override
 	public boolean ticketTypeValidate(TicketType ticketType) {
-		return (ticketType != TicketType.MONTH);
+		return (ticketType != TicketType.PRIME && ticketType != null);
 	}
 
 }

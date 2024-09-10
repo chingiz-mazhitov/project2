@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CustomConstraintValidator<T> {
 
-	void isValid(List<T> item);
+	List<T> isValid(List<T> item);
 	boolean startDateValidate(LocalDate dt, TicketType ticketType);
 	boolean priceValidate(BigDecimal price);
 	boolean ticketTypeValidate(TicketType ticketType);
