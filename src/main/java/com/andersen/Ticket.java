@@ -1,5 +1,8 @@
 package com.andersen;
 
+import com.andersen.validator.CheckNullFields;
+import com.andersen.validator.NullableWarning;
+
 import java.math.BigDecimal;
 
 public class Ticket extends Identify {

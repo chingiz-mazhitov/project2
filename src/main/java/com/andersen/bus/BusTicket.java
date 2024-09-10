@@ -1,4 +1,4 @@
-package com.andersen;
+package com.andersen.bus;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,16 +9,32 @@ public class BusTicket {
 
 	private TicketType ticketType;
 
-	private LocalDate dt;
+	private LocalDate startDate;
 
 	private BigDecimal price;
 
-	public BusTicket(TicketClass ticketClass, TicketType ticketType, LocalDate dt, BigDecimal price) {
+	public BusTicket(TicketClass ticketClass, TicketType ticketType, LocalDate startDate, BigDecimal price) {
 
 		this.ticketClass = ticketClass;
 		this.ticketType = ticketType;
-		this.dt = dt;
+		this.startDate = startDate;
 		this.price = price;
+	}
+
+	public TicketClass getTicketClass() {
+		return ticketClass;
+	}
+
+	public TicketType getTicketType() {
+		return ticketType;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
 	}
 
 	@Override
@@ -26,19 +42,14 @@ public class BusTicket {
 		return "BusTicket{" +
 				"ticketClass=" + ticketClass +
 				", ticketType=" + ticketType +
-				", dt=" + dt +
+				", dt=" + startDate +
 				", price=" + price +
 				'}';
 	}
 
 	enum TicketClass {
 		CLA,
-		STD
-	}
-
-	enum TicketType {
-		DAY,
-		WEEK,
-		YEAR
+		STD,
+		PRIME
 	}
 }
