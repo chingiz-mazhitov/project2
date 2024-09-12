@@ -1,4 +1,4 @@
-package com.andersen;
+package com.andersen.validator;
 
 import java.lang.annotation.*;
 
