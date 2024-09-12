@@ -5,7 +5,7 @@ out/
 .idea/
 target
 ticket-poject.iml
-src/main/java/com/andersen/bus/info.json
+
 
 ### Eclipse ###
 .apt_generated

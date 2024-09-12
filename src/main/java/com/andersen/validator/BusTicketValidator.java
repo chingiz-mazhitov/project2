@@ -53,7 +53,7 @@ public class BusTicketValidator {
 		return validatedList;
 	}
 
-	public boolean startDateValidate(LocalDate dt, TicketType ticketType) {
+	private boolean startDateValidate(LocalDate dt, TicketType ticketType) {
 		boolean result;
 		LocalDate now = LocalDate.now();
 		int currentDayOfYear = now.getDayOfYear();
@@ -78,7 +78,7 @@ public class BusTicketValidator {
 		return result;
 	}
 
-	public boolean priceValidate(BigDecimal price) {
+	private boolean priceValidate(BigDecimal price) {
 		boolean result;
 		BigDecimal remainder = price.remainder(BigDecimal.TWO);
 
@@ -92,7 +92,7 @@ public class BusTicketValidator {
 		return result;
 	}
 
-	public boolean ticketTypeValidate(TicketType ticketType) {
+	private boolean ticketTypeValidate(TicketType ticketType) {
 		return (ticketType != TicketType.PRIME && ticketType != null);
 	}
 
