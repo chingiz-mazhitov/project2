@@ -9,9 +9,8 @@ import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusTicketValidator implements CustomConstraintValidator<BusTicket> {
+public class BusTicketValidator {
 
-	@Override
 	public List<BusTicket> isValid(List<BusTicket> list) {
 
 		List<BusTicket> validatedList = new ArrayList<>();
@@ -54,7 +53,6 @@ public class BusTicketValidator implements CustomConstraintValidator<BusTicket> 
 		return validatedList;
 	}
 
-	@Override
 	public boolean startDateValidate(LocalDate dt, TicketType ticketType) {
 		boolean result;
 		LocalDate now = LocalDate.now();
@@ -80,7 +78,6 @@ public class BusTicketValidator implements CustomConstraintValidator<BusTicket> 
 		return result;
 	}
 
-	@Override
 	public boolean priceValidate(BigDecimal price) {
 		boolean result;
 		BigDecimal remainder = price.remainder(BigDecimal.TWO);
@@ -95,7 +92,6 @@ public class BusTicketValidator implements CustomConstraintValidator<BusTicket> 
 		return result;
 	}
 
-	@Override
 	public boolean ticketTypeValidate(TicketType ticketType) {
 		return (ticketType != TicketType.PRIME && ticketType != null);
 	}
