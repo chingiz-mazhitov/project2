@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class CustomArrayList<T> {
 
-	private int size = 0;
+	private int size;
 
 	private static final int DEFAULT_CAPACITY = 10;
 
@@ -41,12 +41,6 @@ public class CustomArrayList<T> {
 		elements[size++] = element;
 	}
 
-	private void grow() {
-		int newCapacity = capacity() * 2;
-		elements = Arrays.copyOf(elements, newCapacity);
-
-	}
-
 	public int size() {
 		return size;
 	}
@@ -69,11 +63,6 @@ public class CustomArrayList<T> {
 		elements = Arrays.copyOf(newArray, newArray.length);
 	}
 
-	private Object[] shrink() {
-		Object[] array = new Object[capacity() -1];
-		return array;
-	}
-
 	public boolean contains(Object o) {
 		int start = 0;
 		int end = size;
@@ -87,10 +76,20 @@ public class CustomArrayList<T> {
 		return false;
 	}
 
+	private Object[] shrink() {
+		Object[] array = new Object[capacity() -1];
+		return array;
+	}
+
+	private void grow() {
+		int newCapacity = capacity() * 2;
+		elements = Arrays.copyOf(elements, newCapacity);
+
+	}
+
 	private int capacity() {
 		return elements.length;
 	}
-
 
 	@Override
 	public String toString() {

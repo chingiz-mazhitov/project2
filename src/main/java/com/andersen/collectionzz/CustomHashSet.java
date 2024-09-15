@@ -30,6 +30,6 @@ public class CustomHashSet <T> {
 
 	@Override
 	public String toString() {
-		return "" + map.keySet();
+		return map.keySet().toString();
 	}
 }
