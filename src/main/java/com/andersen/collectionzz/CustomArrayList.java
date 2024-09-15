@@ -76,6 +76,11 @@ public class CustomArrayList<T> {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return Arrays.toString(Arrays.copyOfRange(elements, 0, size));
+	}
+
 	private Object[] shrink() {
 		Object[] array = new Object[capacity() -1];
 		return array;
@@ -89,10 +94,5 @@ public class CustomArrayList<T> {
 
 	private int capacity() {
 		return elements.length;
-	}
-
-	@Override
-	public String toString() {
-		return Arrays.toString(Arrays.copyOfRange(elements, 0, size));
 	}
 }
