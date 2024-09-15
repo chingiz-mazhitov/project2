@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class CustomHashSet <T> {
 
-	private HashMap<T, Object> map = null;
+	private HashMap<T, Object> map;
 	private static final Object PRESENT = new Object();
 
 	public CustomHashSet() {
