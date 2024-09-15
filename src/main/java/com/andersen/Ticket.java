@@ -90,7 +90,7 @@ public class Ticket extends Identify {
 	// define overloaded share() methods since static polymorphism is chosen
 	public void share(String phoneNumber) {
 		System.out.println("Sharing ticket via phone");
-		System.out.printf("phone: %s, ticket details: %s\n" + phoneNumber, this);
+		System.out.printf("phone: %s, ticket details: %s\n", phoneNumber, this);
 	}
 
 	public void share(String phoneNumber, String email) {
