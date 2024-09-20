@@ -21,7 +21,7 @@ public class PlainJDBCDemo {
 
 		var persistedClient = userTicketDao.saveUser(client);
 
-		System.out.println(client);
+//		System.out.println(client);
 		System.out.println(persistedClient);
 
 		Ticket ticket = new Ticket(TicketType.WEEK, LocalDateTime.now());

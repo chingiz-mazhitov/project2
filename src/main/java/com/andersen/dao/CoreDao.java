@@ -9,7 +9,7 @@ public interface CoreDao {
 	default Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/my_ticket_service_db",
-				"********", "*******");
+				"******", "******");
 	}
 
 	default void closeConnection(Connection connection) throws SQLException {

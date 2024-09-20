@@ -13,7 +13,4 @@ public class Admin extends User {
 		System.out.println("Role: " + this.getClass().getSimpleName());
 	}
 
-//	public boolean checkTicket(Ticket ticket) {
-//		return ticket.equals(super.tickets);
-//	}
 }
