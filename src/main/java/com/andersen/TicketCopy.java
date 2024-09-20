@@ -1,11 +1,12 @@
 package com.andersen;
 
+import com.andersen.entities.AbstractEntity;
 import com.andersen.validator.CheckNullFields;
 import com.andersen.validator.NullableWarning;
 
 import java.math.BigDecimal;
 
-public class Ticket extends Identify {
+public class TicketCopy extends AbstractEntity {
 
 	private static final int DISCOUNT = 2;
 
@@ -26,11 +27,11 @@ public class Ticket extends Identify {
 	@NullableWarning
 	private BigDecimal price = BigDecimal.valueOf(20.50);
 
-	public Ticket() {
+	public TicketCopy() {
 		CheckNullFields.checkNullFields(this);
 	}
 
-	public Ticket(String concertHall, int eventCode, long timeStamp) {
+	public TicketCopy(String concertHall, int eventCode, long timeStamp) {
 
 		CheckNullFields.checkNullFields(this);
 		this.concertHall = concertHall;
@@ -38,7 +39,7 @@ public class Ticket extends Identify {
 		this.timeStamp = timeStamp;
 	}
 
-	public Ticket(int id, String concertHall, int eventCode, long timeStamp, boolean isPromo, char sector, double baggageLimit) {
+	public TicketCopy(int id, String concertHall, int eventCode, long timeStamp, boolean isPromo, char sector, double baggageLimit) {
 
 		CheckNullFields.checkNullFields(this);
 		super.id = (id > 0 && id <= 9999) ? id : ++id;
@@ -117,7 +118,7 @@ public class Ticket extends Identify {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		Ticket ticket = (Ticket) o;
+		TicketCopy ticket = (TicketCopy) o;
 		return id == ticket.id && timeStamp == ticket.timeStamp;
 	}
 

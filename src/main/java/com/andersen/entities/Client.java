@@ -1,6 +1,4 @@
-package com.andersen.users;
-
-import com.andersen.Ticket;
+package com.andersen.entities;
 
 public class Client extends User {
 
