@@ -1,6 +1,6 @@
 package com.andersen;
 
-import com.andersen.entities.AbstractEntity;
+import com.andersen.entity.AbstractEntity;
 import com.andersen.validator.CheckNullFields;
 import com.andersen.validator.NullableWarning;
 

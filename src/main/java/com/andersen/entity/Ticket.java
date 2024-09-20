@@ -1,8 +1,10 @@
-package com.andersen.entities;
+package com.andersen.entity;
 
 import com.andersen.bus.TicketType;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Ticket extends AbstractEntity {
 
@@ -10,6 +12,7 @@ public class Ticket extends AbstractEntity {
 
 	private LocalDateTime creationDate;
 
+	private User user;
 
 
 	public Ticket() {
@@ -33,10 +36,12 @@ public class Ticket extends AbstractEntity {
 
 	@Override
 	public void print() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String formattedDate = creationDate.format(formatter);
 		System.out.printf("""
 				Ticket details
 				Id: %d
-				Time: %d""", id, creationDate);
+				Time: %d""", id, formattedDate);
 	}
 
 	public TicketType getTicketType() {
@@ -53,5 +58,39 @@ public class Ticket extends AbstractEntity {
 
 	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Ticket ticket = (Ticket) o;
+		return ticketType == ticket.ticketType && Objects.equals(creationDate, ticket.creationDate) && Objects.equals(user, ticket.user);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = Objects.hashCode(ticketType);
+		result = 31 * result + Objects.hashCode(creationDate);
+		result = 31 * result + Objects.hashCode(user);
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket{" +
+				"ticketType=" + ticketType +
+				", creationDate=" + creationDate +
+				", id=" + id +
+				'}';
 	}
 }

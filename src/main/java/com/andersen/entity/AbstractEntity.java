@@ -1,14 +1,14 @@
-package com.andersen.entities;
+package com.andersen.entity;
 
 public abstract class AbstractEntity {
 
 	protected Integer id;
 
-	protected Integer getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	protected void setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

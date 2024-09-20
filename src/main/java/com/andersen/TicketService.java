@@ -1,6 +1,6 @@
 package com.andersen;
 
-import com.andersen.entities.Ticket;
+import com.andersen.entity.Ticket;
 
 import java.util.*;
 
