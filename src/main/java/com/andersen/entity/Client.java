@@ -1,16 +1,18 @@
 package com.andersen.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public class Client extends User {
 
-	public Client() {
-	}
-
-	public Client(String name, LocalDateTime creationDate) {
-		super(name, creationDate);
-	}
 
 	@Override
 	public void printRole() {
@@ -24,15 +26,5 @@ public class Client extends User {
 
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
-	}
-
-	@Override
-	public String toString() {
-		return "Client{" +
-				"name='" + name + '\'' +
-				", creationDate=" + creationDate +
-				", tickets=" + tickets +
-				", id=" + id +
-				'}';
 	}
 }

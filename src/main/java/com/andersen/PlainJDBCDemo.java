@@ -17,7 +17,9 @@ public class PlainJDBCDemo {
 		String name = "John";
 		LocalDateTime dt = LocalDateTime.now();
 
-		User client = new Client(name, dt);
+		User client = new Client();
+		client.setName(name);
+		client.setCreationDate(dt);
 
 		var persistedClient = userTicketDao.saveUser(client);
 
