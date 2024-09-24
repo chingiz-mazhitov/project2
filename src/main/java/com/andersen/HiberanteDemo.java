@@ -69,7 +69,7 @@ public class HiberanteDemo {
 //		USER_TICKET_DAO.updateTicketType(1, TicketType.YEAR);
 
 		// delete user by id
-		USER_TICKET_DAO.deleteUser(2);
+		USER_TICKET_DAO.deleteUser(1);
 
 
 	}

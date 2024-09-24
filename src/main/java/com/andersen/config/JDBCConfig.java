@@ -13,9 +13,7 @@ public class JDBCConfig {
 	public static SessionFactory getSessionFactory() {
 		return new Configuration()
 				.configure(HIBERNATE_CFG_XML)
-//				.addPackage("com.andersen.entity")
-				.addAnnotatedClass(Ticket.class)
-				.addAnnotatedClass(Client.class)
+				.addPackage("com.andersen.entity")
 				.buildSessionFactory();
 	}
 

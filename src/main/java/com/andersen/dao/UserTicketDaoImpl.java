@@ -74,8 +74,6 @@ public class UserTicketDaoImpl implements UserTicketDao {
 
 			// execute query
 			List<Ticket> tickets = query.getResultList();
-			session.getTransaction().commit();
-
 			log.info("list size = {}", tickets.size());
 			return tickets;
 
@@ -91,7 +89,6 @@ public class UserTicketDaoImpl implements UserTicketDao {
 
 			session.beginTransaction();
 			Client client = session.get(Client.class, id);
-			session.getTransaction().commit();
 			log.info("Client with id: {} = {}",id,  client);
 			return client;
 

@@ -16,15 +16,12 @@ import java.time.format.DateTimeFormatter;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Ticket extends AbstractEntity {
 
-//	@NonNull
 	@Column(name = "ticket_type")
 	TicketType ticketType;
 
-//	@NonNull
 	@Column(name = "creation_date")
 	LocalDateTime creationDate;
 

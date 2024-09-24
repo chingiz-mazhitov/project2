@@ -1,6 +1,5 @@
 package com.andersen.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
@@ -18,7 +17,6 @@ public abstract class AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id")
 	protected Integer id;
 
 	public void print() {
