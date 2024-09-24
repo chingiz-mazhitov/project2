@@ -1,11 +1,9 @@
 package com.andersen.entity;
 
 import com.andersen.bus.TicketType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,22 +12,25 @@ import java.time.format.DateTimeFormatter;
 @Table(name = "Ticket")
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true, exclude = "client")
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Ticket extends AbstractEntity {
 
-	@NonNull
+//	@NonNull
 	@Column(name = "ticket_type")
-	private TicketType ticketType;
+	TicketType ticketType;
 
-	@NonNull
+//	@NonNull
 	@Column(name = "creation_date")
-	private LocalDateTime creationDate;
+	LocalDateTime creationDate;
 
-	private User user;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	Client client;
 
 	// define overloaded share() methods since static polymorphism is chosen
 	public void share(String phoneNumber) {

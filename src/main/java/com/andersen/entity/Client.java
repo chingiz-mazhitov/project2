@@ -1,15 +1,20 @@
 package com.andersen.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "User")
 @NoArgsConstructor
-@ToString
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
 public class Client extends User {
 
@@ -26,5 +31,15 @@ public class Client extends User {
 
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
+	}
+
+	public void addTicket(Ticket ticket) {
+		if (tickets == null) {
+			tickets = new ArrayList<>();
+		}
+
+		tickets.add(ticket);
+
+		ticket.setClient(this);
 	}
 }

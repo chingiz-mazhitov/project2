@@ -1,16 +1,19 @@
 package com.andersen.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.FetchType.LAZY;
+
 @MappedSuperclass
 @Setter
 @Getter
+@ToString(exclude = "tickets")
 @NoArgsConstructor
 @RequiredArgsConstructor
 public abstract class User extends AbstractEntity {
@@ -23,6 +26,7 @@ public abstract class User extends AbstractEntity {
 	@Column(name = "creation_date")
 	protected LocalDateTime creationDate;
 
+	@OneToMany(mappedBy = "client", fetch = LAZY, cascade = ALL, orphanRemoval = true)
 	protected List<Ticket> tickets;
 
 	public User(List<Ticket> tickets) {
@@ -31,13 +35,4 @@ public abstract class User extends AbstractEntity {
 
 	public abstract void printRole();
 
-	public void addTicket(Ticket ticket) {
-		if (tickets == null) {
-			tickets = new ArrayList<>();
-		}
-
-		tickets.add(ticket);
-
-		ticket.setUser(this);
-	}
 }
