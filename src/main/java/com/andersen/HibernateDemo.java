@@ -9,11 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.LocalDateTime;
 
 @Slf4j
-public class HiberanteDemo {
-
-	private static final UserTicketDaoImpl USER_TICKET_DAO = new UserTicketDaoImpl();
+public class HibernateDemo {
 
 	public static void main(String[] args) {
+
+		UserTicketDaoImpl USER_TICKET_DAO = new UserTicketDaoImpl();
 
 		// Insert user
 		Client user1 = new Client();
@@ -69,7 +69,7 @@ public class HiberanteDemo {
 //		USER_TICKET_DAO.updateTicketType(1, TicketType.YEAR);
 
 		// delete user by id
-		USER_TICKET_DAO.deleteUser(2);
+		USER_TICKET_DAO.deleteUser(1);
 
 
 	}
