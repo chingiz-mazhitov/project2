@@ -1,16 +1,17 @@
 package com.andersen.dao;
 
 import com.andersen.bus.TicketType;
+import com.andersen.entity.Client;
 import com.andersen.entity.Ticket;
 import com.andersen.entity.User;
 
 import java.util.List;
 
-public interface UserTicketDao extends CoreDao{
+public interface UserTicketDao {
 
-	Ticket saveTicket(Ticket ticket);
+	void saveTicket(Ticket ticket);
 
-	User saveUser(User user);
+	void saveUser(User user);
 
 	Ticket findTicketById(Integer id);
 
@@ -18,8 +19,11 @@ public interface UserTicketDao extends CoreDao{
 
 	User findUserById(Integer id);
 
-	int updateTicketType(Ticket ticket);
+	void updateTicketType(Integer id, TicketType ticketType);
 
 	// deletes User cascading delete to tickets
-	int deleteUser(Integer id);
+	Client deleteUser(Integer id);
+
+	// update user and its tickets
+	void updateUserAndTickets(Client clientUpdate, List<Ticket> tickets);
 }

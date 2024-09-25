@@ -1,16 +1,21 @@
 package com.andersen.entity;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "User")
+@NoArgsConstructor
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class Client extends User {
 
-	public Client() {
-	}
-
-	public Client(String name, LocalDateTime creationDate) {
-		super(name, creationDate);
-	}
 
 	@Override
 	public void printRole() {
@@ -26,13 +31,13 @@ public class Client extends User {
 		this.tickets = tickets;
 	}
 
-	@Override
-	public String toString() {
-		return "Client{" +
-				"name='" + name + '\'' +
-				", creationDate=" + creationDate +
-				", tickets=" + tickets +
-				", id=" + id +
-				'}';
+	public void addTicket(Ticket ticket) {
+		if (tickets == null) {
+			tickets = new ArrayList<>();
+		}
+
+		tickets.add(ticket);
+
+		ticket.setClient(this);
 	}
 }

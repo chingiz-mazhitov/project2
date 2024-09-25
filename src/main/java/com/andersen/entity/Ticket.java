@@ -1,27 +1,33 @@
 package com.andersen.entity;
 
 import com.andersen.bus.TicketType;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
+@Entity
+@Table(name = "Ticket")
+@Getter
+@Setter
+@ToString(callSuper = true, exclude = "client")
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Ticket extends AbstractEntity {
 
-	private TicketType ticketType;
+	@Column(name = "ticket_type")
+	TicketType ticketType;
 
-	private LocalDateTime creationDate;
+	@Column(name = "creation_date")
+	LocalDateTime creationDate;
 
-	private User user;
-
-
-	public Ticket() {
-	}
-
-	public Ticket(TicketType ticketType, LocalDateTime creationDate) {
-		this.ticketType = ticketType;
-		this.creationDate = creationDate;
-	}
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	Client client;
 
 	// define overloaded share() methods since static polymorphism is chosen
 	public void share(String phoneNumber) {
@@ -42,55 +48,5 @@ public class Ticket extends AbstractEntity {
 				Ticket details
 				Id: %d
 				Time: %d""", id, formattedDate);
-	}
-
-	public TicketType getTicketType() {
-		return ticketType;
-	}
-
-	public void setTicketType(TicketType ticketType) {
-		this.ticketType = ticketType;
-	}
-
-	public LocalDateTime getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(LocalDateTime creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		Ticket ticket = (Ticket) o;
-		return ticketType == ticket.ticketType && Objects.equals(creationDate, ticket.creationDate) && Objects.equals(user, ticket.user);
-	}
-
-	@Override
-	public int hashCode() {
-		int result = Objects.hashCode(ticketType);
-		result = 31 * result + Objects.hashCode(creationDate);
-		result = 31 * result + Objects.hashCode(user);
-		return result;
-	}
-
-	@Override
-	public String toString() {
-		return "Ticket{" +
-				"ticketType=" + ticketType +
-				", creationDate=" + creationDate +
-				", id=" + id +
-				'}';
 	}
 }

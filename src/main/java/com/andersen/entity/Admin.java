@@ -1,12 +1,12 @@
 package com.andersen.entity;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "User")
 public class Admin extends User {
 
-	public Admin(String name, LocalDateTime creationDate) {
-		super(name, creationDate);
-	}
 
 	@Override
 	public void printRole() {

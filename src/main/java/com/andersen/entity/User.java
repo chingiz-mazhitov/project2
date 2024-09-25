@@ -1,54 +1,38 @@
 package com.andersen.entity;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.FetchType.EAGER;
+import static jakarta.persistence.FetchType.LAZY;
+
+@MappedSuperclass
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@RequiredArgsConstructor
 public abstract class User extends AbstractEntity {
 
+	@NonNull
+	@Column(name = "name")
 	protected String name;
 
+	@NonNull
+	@Column(name = "creation_date")
 	protected LocalDateTime creationDate;
 
+	@OneToMany(mappedBy = "client", fetch = EAGER, cascade = ALL, orphanRemoval = true)
 	protected List<Ticket> tickets;
-
-	public User() {
-	}
 
 	public User(List<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 
-	public User(String name, LocalDateTime creationDate) {
-		this.name = name;
-		this.creationDate = creationDate;
-	}
-
 	public abstract void printRole();
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public LocalDateTime getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(LocalDateTime creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	public void addTicket(Ticket ticket) {
-		if (tickets == null) {
-			tickets = new ArrayList<>();
-		}
-
-		tickets.add(ticket);
-
-		ticket.setUser(this);
-	}
 }
