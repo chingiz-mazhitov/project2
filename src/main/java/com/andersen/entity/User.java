@@ -7,12 +7,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.FetchType.LAZY;
 
 @MappedSuperclass
 @Setter
 @Getter
-@ToString(exclude = "tickets")
+@ToString
 @NoArgsConstructor
 @RequiredArgsConstructor
 public abstract class User extends AbstractEntity {
@@ -25,7 +26,7 @@ public abstract class User extends AbstractEntity {
 	@Column(name = "creation_date")
 	protected LocalDateTime creationDate;
 
-	@OneToMany(mappedBy = "client", fetch = LAZY, cascade = ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "client", fetch = EAGER, cascade = ALL, orphanRemoval = true)
 	protected List<Ticket> tickets;
 
 	public User(List<Ticket> tickets) {

@@ -1,19 +1,22 @@
 package com.andersen;
 
 import com.andersen.bus.TicketType;
+import com.andersen.dao.UserTicketDao;
 import com.andersen.dao.UserTicketDaoImpl;
 import com.andersen.entity.Client;
 import com.andersen.entity.Ticket;
+import com.andersen.entity.User;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 public class HibernateDemo {
 
-	public static void main(String[] args) {
+	private static final UserTicketDao USER_TICKET_DAO = new UserTicketDaoImpl();
 
-		UserTicketDaoImpl USER_TICKET_DAO = new UserTicketDaoImpl();
+	public static void main(String[] args) {
 
 		// Insert user
 		Client user1 = new Client();
@@ -56,20 +59,20 @@ public class HibernateDemo {
 
 
 		// Retrieve Ticket from database
-		var ticketDB = USER_TICKET_DAO.findTicketById(1);
+		Ticket ticketDB = USER_TICKET_DAO.findTicketById(1);
 		log.info("From db: {}", ticketDB);
 
 		// Retrieve tickets by userId
-		var ticketsByUserId = USER_TICKET_DAO.findTicketsByUserId(1);
+		List<Ticket> ticketsByUserId = USER_TICKET_DAO.findTicketsByUserId(1);
 
 		// Retrieve user by id
-		var userById = USER_TICKET_DAO.findUserById(1);
+		User userById = USER_TICKET_DAO.findUserById(1);
 
 		// update TicketType
-//		USER_TICKET_DAO.updateTicketType(1, TicketType.YEAR);
+		USER_TICKET_DAO.updateTicketType(1, TicketType.YEAR);
 
 		// delete user by id
-		USER_TICKET_DAO.deleteUser(1);
+		USER_TICKET_DAO.deleteUser(2);
 
 
 	}
