@@ -24,19 +24,22 @@ public class HibernateDemo {
 		UserService userService = ctx.getBean(UserService.class);
 
 		// Insert user
-//		Client user1 = new Client();
-//		user1.setName("Ernest");
-//		user1.setCreationDate(LocalDateTime.now());
-//
-//		// add ticket
-//		Ticket ticket1 = new Ticket();
-//		ticket1.setTicketType(TicketType.WEEK);
-//		ticket1.setCreationDate(LocalDateTime.now());
-//		user1.addTicket(ticket1);
-//
-//		userService.saveUser(user1);
-//
-//		// Insert user
+		Client user1 = new Client();
+		user1.setName("Ernest");
+		user1.setCreationDate(LocalDateTime.now());
+
+		// add ticket
+		Ticket ticket1 = new Ticket();
+		ticket1.setTicketType(TicketType.WEEK);
+		ticket1.setCreationDate(LocalDateTime.now());
+		user1.addTicket(ticket1);
+
+		userService.saveUser(user1);
+
+		user1.setName("Edward");
+//		userService.updateActivatedUser
+
+		// Insert user
 //		Client user2 = new Client();
 //		user2.setName("Francis");
 //		user2.setCreationDate(LocalDateTime.now());
@@ -78,12 +81,12 @@ public class HibernateDemo {
 //
 //		// delete user by id
 //		userService.deleteUserById(2);
+//
+//		User user = userService.findUserById(1);
+//		log.info("{}", user);
 
-		User user = userService.findUserById(1);
-		log.info("{}", user);
-
-		User userWithTickets = userService.findUserWithTickets(1);
-		log.info("{}", userWithTickets.getTickets());
+//		User userWithTickets = userService.findUserWithTickets(1);
+//		log.info("{}", userWithTickets.getTickets());
 
 
 
