@@ -3,6 +3,7 @@ package com.andersen.service;
 import com.andersen.bus.TicketType;
 import com.andersen.dao.TicketDao;
 import com.andersen.dao.UserDao;
+import com.andersen.entity.Client;
 import com.andersen.entity.Ticket;
 import com.andersen.entity.User;
 import lombok.AccessLevel;
@@ -68,5 +69,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateTicketType(Integer id, TicketType ticketType) {
 		ticketDao.updateTicketType(id, ticketType);
+	}
+
+	@Override
+	public void updateActivatedUser(Client client) {
+		userDao.updateActivatedUser(client);
 	}
 }

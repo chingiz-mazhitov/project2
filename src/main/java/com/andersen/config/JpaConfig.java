@@ -55,6 +55,7 @@ public class JpaConfig {
 		jpaProperties.put(Environment.SHOW_SQL, false);
 		jpaProperties.put(Environment.FORMAT_SQL, false);
 		jpaProperties.put(Environment.HBM2DDL_AUTO, "none");
+		jpaProperties.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
 
 		return jpaProperties;
 	}

@@ -36,6 +36,7 @@ public class DataSourceCfg {
 		try {
 			var hc = new HikariConfig();
 			hc.setJdbcUrl(url);
+			hc.setSchema("public");
 			hc.setDriverClassName(driverClassName);
 			hc.setUsername(username);
 			hc.setPassword(password);

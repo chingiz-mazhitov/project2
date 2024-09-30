@@ -1,6 +1,7 @@
 package com.andersen.dao;
 
 import com.andersen.entity.Client;
+import com.andersen.entity.Ticket;
 import com.andersen.entity.User;
 
 public interface UserDao {
@@ -12,4 +13,6 @@ public interface UserDao {
 	User findWithTickets(Integer id);
 
 	void delete(Integer id);
+
+	void updateActivatedUser(Client client);
 }
