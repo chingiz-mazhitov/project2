@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Ticket extends AbstractEntity {
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "ticket_type")
 	TicketType ticketType;
 
