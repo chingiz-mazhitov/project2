@@ -18,10 +18,8 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Import(DataSourceCfg.class)
-@Configuration
 @ComponentScan(basePackages = {"com.andersen"})
 @EnableTransactionManagement
-@Slf4j
 public class JpaConfig {
 
 	@Autowired
