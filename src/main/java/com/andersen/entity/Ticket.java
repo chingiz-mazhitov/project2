@@ -4,6 +4,8 @@ import com.andersen.bus.TicketType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +21,9 @@ import java.time.format.DateTimeFormatter;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Ticket extends AbstractEntity {
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "ticket_type")
+	@JdbcTypeCode(SqlTypes.NAMED_ENUM)
 	TicketType ticketType;
 
 	@Column(name = "creation_date")

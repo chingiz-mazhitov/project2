@@ -5,7 +5,7 @@ out/
 .idea/
 target
 ticket-poject.iml
-
+/docker-build/.env
 
 ### Eclipse ###
 .apt_generated
