@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Import(DataSourceCfg.class)
+@Configuration
 @ComponentScan(basePackages = {"com.andersen"})
 @EnableTransactionManagement
 public class JpaConfig {
