@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 public class Ticket extends AbstractEntity {
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "ticket_t")
+	@Column(name = "ticket_type")
 	@JdbcTypeCode(SqlTypes.NAMED_ENUM)
 	TicketType ticketType;
 

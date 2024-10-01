@@ -9,7 +9,7 @@ CREATE TABLE app_user (
 CREATE TABLE Ticket (
 	id int GENERATED ALWAYS AS IDENTITY
 	, user_id INT NOT NULL
-	, ticket_t ticket_type
+	, ticket_type ticket_type
 	, creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	, PRIMARY KEY (id)
 	, CONSTRAINT FK_USER_ID
