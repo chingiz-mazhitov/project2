@@ -1,6 +1,7 @@
 package com.andersen.entity;
 
 import com.andersen.bus.TicketType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 @Table(name = "Ticket")
 @Getter
 @Setter
-@ToString(callSuper = true, exclude = "client")
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,7 +31,8 @@ public class Ticket extends AbstractEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	Client client;
+	@JsonBackReference
+	User user;
 
 	// define overloaded share() methods since static polymorphism is chosen
 	public void share(String phoneNumber) {
@@ -52,5 +53,14 @@ public class Ticket extends AbstractEntity {
 				Ticket details
 				Id: %d
 				Time: %d""", id, formattedDate);
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket{" +
+				"id=" + id +
+				", creationDate=" + creationDate +
+				", ticketType=" + ticketType +
+				'}';
 	}
 }
