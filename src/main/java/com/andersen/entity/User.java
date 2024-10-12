@@ -1,22 +1,22 @@
 package com.andersen.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.ALL;
-import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.FetchType.LAZY;
 
-@MappedSuperclass
+@Entity(name = "app_user")
 @Setter
 @Getter
-@ToString(exclude = "tickets")
 @NoArgsConstructor
 @RequiredArgsConstructor
-public abstract class User extends AbstractEntity {
+public class User extends AbstractEntity {
 
 	@NonNull
 	@Column(name = "name")
@@ -26,13 +26,26 @@ public abstract class User extends AbstractEntity {
 	@Column(name = "creation_date")
 	protected LocalDateTime creationDate;
 
-	@OneToMany(mappedBy = "client", fetch = LAZY, cascade = ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "user", fetch = LAZY, cascade = ALL, orphanRemoval = true)
+	@JsonManagedReference
 	protected List<Ticket> tickets;
 
-	public User(List<Ticket> tickets) {
-		this.tickets = tickets;
+	public void addTicket(Ticket ticket) {
+		if (tickets == null) {
+			tickets = new ArrayList<>();
+		}
+
+		tickets.add(ticket);
+
+		ticket.setUser(this);
 	}
 
-	public abstract void printRole();
-
+	@Override
+	public String toString() {
+		return "User{" +
+				"name='" + name + '\'' +
+				", creationDate=" + creationDate +
+				", id=" + id +
+				'}';
+	}
 }
