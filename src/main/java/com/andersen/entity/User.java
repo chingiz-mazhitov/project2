@@ -15,6 +15,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @Setter
 @Getter
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @RequiredArgsConstructor
 public class User extends AbstractEntity {
 
