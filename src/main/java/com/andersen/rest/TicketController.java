@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 @AllArgsConstructor
-@Slf4j
 public class TicketController {
 
 	private TicketService ticketService;
