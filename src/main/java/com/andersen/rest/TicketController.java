@@ -21,12 +21,6 @@ public class TicketController {
 
 	@GetMapping("/tickets/{ticketId}")
 	public Ticket findTicket(@PathVariable int ticketId) {
-		Ticket ticket = ticketService.findById(ticketId);
-
-		if(ticket == null) {
-			log.error("Ticket id not found - " + ticketId);
-			return null;
-		}
-		return ticket;
+		return ticketService.findById(ticketId);
 	}
 }
