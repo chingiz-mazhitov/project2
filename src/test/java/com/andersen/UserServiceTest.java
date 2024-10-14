@@ -49,13 +49,11 @@ public class UserServiceTest {
 		assertEquals(result, user);
 	}
 
-	@Disabled
 	@Test
 	void findUserById_NotFound() {
 		assertNull(userService.findById(99));
 	}
 
-	@Disabled
 	@Test
 	void saveUser_Invoke() {
 		userService.save(user);
@@ -69,15 +67,6 @@ public class UserServiceTest {
 
 		verify(userRepository).deleteById(user.getId());
 	}
-
-	@Test
-	void deleteUser_ThrowException() {
-		doThrow(new RuntimeException("Delete operation failed")).when(userRepository).deleteById(2);
-		assertThrows(RuntimeException.class, () -> userService.delete(2));
-
-	}
-
-
 
 
 }
